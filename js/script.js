@@ -28,12 +28,13 @@ $(document).ready(function () {
     })
 });
 
-function bubbleSort(element, array, arrayName) {
+function bubbleSort(element, data, arrayName) {
+    var array = data;
     var tmp;
     for (var i = array.length - 1; i > 0; i--) {
         var counter = 0;
         var j = 0;
-        var interval = setInterval(function () {
+        while (j < i) {
             redraw(element, array, arrayName);
             redraw(element, array, arrayName, j);
             if (array[j] > array[j + 1]) {
@@ -44,13 +45,10 @@ function bubbleSort(element, array, arrayName) {
             }
             redraw(element, array, arrayName, j);
             j++;
-            if (j == i) {
-                clearInterval(interval);
-            }
-        }, 500);
-        redraw(element, array, arrayName, j);
+        }
         if (counter == 0) {
             break;
         }
     }
+    redraw(element, array, arrayName);
 }
