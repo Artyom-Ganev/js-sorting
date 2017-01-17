@@ -32,7 +32,12 @@ function bubbleSort(element, array, arrayName) {
     var tmp;
     for (var i = array.length - 1; i > 0; i--) {
         var counter = 0;
-        for (var j = 0; j < i; j++) {
+        var j = 0;
+        var interval = setInterval(function () {
+            $("#" + arrayName).remove();
+            appendListFromArray(element, array, arrayName);
+            $("#" + arrayName).remove();
+            appendListFromArrayCustom(element, array, arrayName, j);
             if (array[j] > array[j + 1]) {
                 tmp = array[j];
                 array[j] = array[j + 1];
@@ -40,8 +45,14 @@ function bubbleSort(element, array, arrayName) {
                 counter++;
             }
             $("#" + arrayName).remove();
-            appendListFromArray(element, array, arrayName);
-        }
+            appendListFromArrayCustom(element, array, arrayName, j);
+            j++;
+            if (j == i) {
+                clearInterval(interval);
+            }
+        }, 500);
+        $("#" + arrayName).remove();
+        appendListFromArray(element, array, arrayName);
         if (counter == 0) {
             break;
         }

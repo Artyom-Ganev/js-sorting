@@ -25,6 +25,18 @@ function appendListFromArray(element, array, arrayId) {
     $(element).append(input);
     for (var i = 0; i < array.length; i++) {
         var li = $("<li>" + array[i] + "</li>");
-        li.hide().appendTo($("#" + arrayId)).show("slow");
+        li.appendTo($("#" + arrayId));
+    }
+}
+
+function appendListFromArrayCustom(element, array, arrayId, current) {
+    var input = $("<ul id=" + arrayId + "></ul>");
+    $(element).append(input);
+    for (var i = 0; i < array.length; i++) {
+        var li = $("<li>" + array[i] + "</li>");
+        if (i == current || (i == current + 1)) {
+            li.css("background-color", "#ca8833");
+        }
+        li.appendTo($("#" + arrayId));
     }
 }
