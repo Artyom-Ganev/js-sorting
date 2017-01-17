@@ -20,11 +20,11 @@ function generateArray(count) {
     return array;
 }
 
-function appendListFromArray(element, array, array_id) {
-    var input = $("<ul id=" + array_id + "></ul>");
+function appendListFromArray(element, array, arrayId) {
+    var input = $("<ul id=" + arrayId + "></ul>");
     $(element).append(input);
     for (var i = 0; i < array.length; i++) {
         var li = $("<li>" + array[i] + "</li>");
-        li.hide().appendTo($("#" + array_id)).show("slow");
+        li.hide().appendTo($("#" + arrayId)).show("slow");
     }
 }
