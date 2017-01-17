@@ -40,3 +40,12 @@ function appendListFromArrayCustom(element, array, arrayId, current) {
         li.appendTo($("#" + arrayId));
     }
 }
+
+function redraw(element, array, arrayName, index) {
+    $("#" + arrayName).remove();
+    if (index == undefined) {
+        appendListFromArray(element, array, arrayName);
+    } else {
+        appendListFromArrayCustom(element, array, arrayName, index);
+    }
+}

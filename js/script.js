@@ -34,25 +34,21 @@ function bubbleSort(element, array, arrayName) {
         var counter = 0;
         var j = 0;
         var interval = setInterval(function () {
-            $("#" + arrayName).remove();
-            appendListFromArray(element, array, arrayName);
-            $("#" + arrayName).remove();
-            appendListFromArrayCustom(element, array, arrayName, j);
+            redraw(element, array, arrayName);
+            redraw(element, array, arrayName, j);
             if (array[j] > array[j + 1]) {
                 tmp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = tmp;
                 counter++;
             }
-            $("#" + arrayName).remove();
-            appendListFromArrayCustom(element, array, arrayName, j);
+            redraw(element, array, arrayName, j);
             j++;
             if (j == i) {
                 clearInterval(interval);
             }
         }, 500);
-        $("#" + arrayName).remove();
-        appendListFromArray(element, array, arrayName);
+        redraw(element, array, arrayName, j);
         if (counter == 0) {
             break;
         }
