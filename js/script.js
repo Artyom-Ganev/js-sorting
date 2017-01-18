@@ -29,25 +29,29 @@ $(document).ready(function () {
 });
 
 function bubbleSort(element, data, arrayName) {
-    var array = data;
+    var array = data.slice();
+    var timeout = 0;
+    redraw(element, array, arrayName);
     for (var i = array.length - 1; i > 0; i--) {
         var counter = 0;
         var j = 0;
         while (j < i) {
-            redraw(element, array, arrayName);
-            redraw(element, array, arrayName, j);
+            timeout += 500;
+            redrawWithTimeout(element, array, arrayName, j, timeout);
             if (array[j] > array[j + 1]) {
                 var tmp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = tmp;
                 counter++;
             }
-            redraw(element, array, arrayName, j);
+            timeout += 500;
+            redrawWithTimeout(element, array, arrayName, j, timeout);
             j++;
         }
         if (counter === 0) {
             break;
         }
     }
-    redraw(element, array, arrayName);
+    timeout += 500;
+    redrawWithTimeout(element, array, arrayName, undefined, timeout);
 }

@@ -34,7 +34,10 @@ function appendListFromArrayCustom(element, array, arrayId, current) {
     $(element).append(input);
     for (var i = 0; i < array.length; i++) {
         var li = $("<li>" + array[i] + "</li>");
-        if (i === current || (i === current + 1)) {
+        if (i === current) {
+            li.css("background-color", "#ca8833");
+        }
+        if (i === (current + 1)) {
             li.css("background-color", "#ca8833");
         }
         li.appendTo($("#" + arrayId));
@@ -48,4 +51,11 @@ function redraw(element, array, arrayName, index) {
     } else {
         appendListFromArrayCustom(element, array, arrayName, index);
     }
+}
+
+function redrawWithTimeout(element, data, arrayName, j, timeout) {
+    var array = data.slice();
+    setTimeout(function () {
+        redraw(element, array, arrayName, j);
+    }, timeout);
 }
