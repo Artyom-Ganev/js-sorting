@@ -34,7 +34,7 @@ function appendListFromArrayCustom(element, array, arrayId, current) {
     $(element).append(input);
     for (var i = 0; i < array.length; i++) {
         var li = $("<li>" + array[i] + "</li>");
-        if (i == current || (i == current + 1)) {
+        if (i === current || (i === current + 1)) {
             li.css("background-color", "#ca8833");
         }
         li.appendTo($("#" + arrayId));
@@ -43,7 +43,7 @@ function appendListFromArrayCustom(element, array, arrayId, current) {
 
 function redraw(element, array, arrayName, index) {
     $("#" + arrayName).remove();
-    if (index == undefined) {
+    if (index === undefined) {
         appendListFromArray(element, array, arrayName);
     } else {
         appendListFromArrayCustom(element, array, arrayName, index);

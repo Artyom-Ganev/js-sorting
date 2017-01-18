@@ -22,7 +22,7 @@ $(document).ready(function () {
             outputTitleAdded = true;
         }
         var sortingType = $('input[name=sortingType]:checked').val();
-        if (sortingType == "BubbleSort") {
+        if (sortingType === "BubbleSort") {
             bubbleSort($("#output_txt"), data, "output_array");
         }
     })
@@ -30,7 +30,6 @@ $(document).ready(function () {
 
 function bubbleSort(element, data, arrayName) {
     var array = data;
-    var tmp;
     for (var i = array.length - 1; i > 0; i--) {
         var counter = 0;
         var j = 0;
@@ -38,7 +37,7 @@ function bubbleSort(element, data, arrayName) {
             redraw(element, array, arrayName);
             redraw(element, array, arrayName, j);
             if (array[j] > array[j + 1]) {
-                tmp = array[j];
+                var tmp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = tmp;
                 counter++;
@@ -46,7 +45,7 @@ function bubbleSort(element, data, arrayName) {
             redraw(element, array, arrayName, j);
             j++;
         }
-        if (counter == 0) {
+        if (counter === 0) {
             break;
         }
     }
