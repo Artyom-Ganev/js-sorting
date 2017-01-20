@@ -13,10 +13,13 @@
 <div class="content">
     <div class="settings">
         <p>Settings</p>
-        <form class="radio">
-            <input type="radio" name="sortingType" value="BubbleSort" checked>Bubble sort<br>
-            <input type="radio" name="sortingType" value="TreeSort"> Tree sort<br>
-        </form>
+        <div id="sorting_selection">
+            <label>Selected sorting type:</label>
+            <form class="radio">
+                <input type="radio" name="sortingType" value="BubbleSort" checked>Bubble sort<br>
+                <input type="radio" name="sortingType" value="TreeSort"> Tree sort<br>
+            </form>
+        </div>
         <ul class="buttons">
             <li><a href="#" id="generate_btn">Generate</a></li>
             <li><a href="#" id="sort_btn">Sort</a></li>

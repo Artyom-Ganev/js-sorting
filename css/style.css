@@ -50,9 +50,15 @@ a:hover {
     position: absolute;
 }
 
-.radio {
+#sorting_selection {
     text-align: left;
+    padding: 10px;
 }
+
+.radio {
+    margin: 5px;
+}
+
 .buttons li {
     display: inline;
     margin: 10px;
@@ -70,6 +76,13 @@ a:hover {
 
 .buttons a:hover {
     background-color: #ca8833;
+    color: #2813b4;
+}
+
+#tooltip {
+    text-align: center;
+    position: relative;
+    z-index: 100;
     color: #2813b4;
 }
 
