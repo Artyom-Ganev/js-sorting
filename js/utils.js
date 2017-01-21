@@ -137,3 +137,78 @@ function drawMessage(element, timeout, msg) {
         finish.remove();
     }, timeout + 3500)
 }
+
+/**
+ * Create new Node
+ * @param val - new node value
+ */
+function Node(val) {
+    this.value = val;
+    this.left = null;
+    this.right = null;
+}
+
+/**
+ * Create new binary tree
+ */
+function BinaryTree() {
+    this.root = null;
+}
+
+/**
+ * Insert value to Binary tree
+ *
+ * @param val - value to insert
+ */
+BinaryTree.prototype.insert = function (val) {
+    var root = this.root;
+    var newNode = new Node(val);
+
+    if (!root) {
+        this.root = newNode;
+        return;
+    }
+
+    var currentNode = root;
+    while (currentNode) {
+        if (val < currentNode.value) {
+            if (!currentNode.left) {
+                currentNode.left = newNode;
+                break;
+            }
+            else {
+                currentNode = currentNode.left;
+            }
+        }
+        else {
+            if (!currentNode.right) {
+                currentNode.right = newNode;
+                break;
+            }
+            else {
+                currentNode = currentNode.right;
+            }
+        }
+    }
+};
+
+/**
+ * Write node values in ascending order
+ *
+ * @param node - start node
+ * @param saveTo - array to save values
+ * @param index - start index
+ * @returns {*} array with sorted values
+ */
+function incOrder(node, saveTo, index) {
+    if (node) {
+        if (node.left) {
+            index = incOrder(node.left, saveTo, index);
+        }
+        saveTo[index++] = node.value;
+        if (node.right) {
+            index = incOrder(node.right, saveTo, index);
+        }
+    }
+    return index;
+}

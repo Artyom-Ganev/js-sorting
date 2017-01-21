@@ -46,9 +46,12 @@ function runSelectedSort(data) {
     if (sortingType === "BubbleSort") {
         outputTxt.show();
         bubbleSort(outputTxt, data, "output_array");
+    } else if (sortingType === "TreeSort") {
+        outputTxt.show();
+        treeSort(outputTxt, data, "output_array");
     } else {
         outputTxt.hide();
-        drawMessage($("#input_array"), 0, "Sorry, tree sort is not implemented yet.")
+        drawMessage($("#input_array"), 0, "Unsupported sorting type")
     }
 }
 
@@ -87,4 +90,22 @@ function bubbleSort(element, data, arrayName) {
     redrawWithTimeout(element, array, arrayName, undefined, timeout);
     timeout += 500;
     drawMessage(element, timeout, "Sorting successfully finished!");
+}
+
+/**
+ * Tree sort function
+ *
+ * @param element - element for adding container to render data
+ * @param data - array to sort
+ * @param arrayName - array id
+ */
+function treeSort(element, data, arrayName) {
+    var tree = new BinaryTree();
+    var length = data.length;
+    var result = [length];
+    for (var i = 0; i < length; i++) {
+        tree.insert(data[i]);
+    }
+    incOrder(tree.root, result, 0);
+    redraw(element, result, arrayName);
 }
