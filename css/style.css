@@ -92,7 +92,7 @@ a:hover {
     position: relative;
 }
 
-#view li {
+#output_array li, #input_array li {
     display: inline-block;
     padding: 20px;
     margin: 10px;
@@ -102,7 +102,7 @@ a:hover {
     user-select: none;
 }
 
-#view li:hover {
+#output_array li:hover, #output_array li:hover {
     cursor: default;
 }
 

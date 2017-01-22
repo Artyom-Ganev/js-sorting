@@ -65,6 +65,7 @@ function runSelectedSort(data) {
 function bubbleSort(element, data, arrayName) {
     var array = data.slice();
     var timeout = 0;
+    $("#tree").remove();
     redraw(element, array, arrayName);
     for (var i = array.length - 1; i > 0; i--) {
         var counter = 0;
@@ -103,9 +104,15 @@ function treeSort(element, data, arrayName) {
     var tree = new BinaryTree();
     var length = data.length;
     var result = [length];
+    var timeout = 0;
+    $("#" + arrayName).remove();
+
     for (var i = 0; i < length; i++) {
-        tree.insert(data[i]);
+        tree.insert(data[i], i + 1);
+        redrawTreeWithTimeout(element, tree.root, timeout);
+        timeout += 500;
     }
+
     incOrder(tree.root, result, 0);
-    redraw(element, result, arrayName);
+    redrawWithTimeout(element, result, arrayName, undefined, timeout);
 }

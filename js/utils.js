@@ -142,8 +142,11 @@ function drawMessage(element, timeout, msg) {
  * Create new Node
  * @param val - new node value
  */
-function Node(val) {
+function Node(val, id) {
     this.value = val;
+    this.id = id;
+    this.name = val;
+    this.children = [];
     this.left = null;
     this.right = null;
 }
@@ -160,9 +163,9 @@ function BinaryTree() {
  *
  * @param val - value to insert
  */
-BinaryTree.prototype.insert = function (val) {
+BinaryTree.prototype.insert = function (val, id) {
     var root = this.root;
-    var newNode = new Node(val);
+    var newNode = new Node(val, id);
 
     if (!root) {
         this.root = newNode;
@@ -174,6 +177,7 @@ BinaryTree.prototype.insert = function (val) {
         if (val < currentNode.value) {
             if (!currentNode.left) {
                 currentNode.left = newNode;
+                addChild(currentNode, newNode);
                 break;
             }
             else {
@@ -183,6 +187,7 @@ BinaryTree.prototype.insert = function (val) {
         else {
             if (!currentNode.right) {
                 currentNode.right = newNode;
+                addChild(currentNode, newNode);
                 break;
             }
             else {
@@ -191,6 +196,16 @@ BinaryTree.prototype.insert = function (val) {
         }
     }
 };
+
+function addChild(parent, child) {
+    var children = parent.children;
+    var size = children.length;
+    if (size === 0) {
+        children[0] = child;
+    } else {
+        children[1] = child;
+    }
+}
 
 /**
  * Write node values in ascending order
@@ -211,4 +226,26 @@ function incOrder(node, saveTo, index) {
         }
     }
     return index;
+}
+
+function redrawTreeWithTimeout(element, node, timeout) {
+    var newNode = JSON.parse(JSON.stringify(node));
+    setTimeout(function () {
+        redrawTree(element, newNode);
+    }, timeout);
+}
+
+function redrawTree(element, node) {
+    $("#tree").remove();
+    var treeViewer = $("<div id=\"tree\"></div>");
+    element.append(treeViewer);
+    var json = JSON.stringify(node, ["id", "name", "children"]);
+    var reg = new RegExp("\"", 'g');
+    var data = eval("[" + json.replace(reg, "") + "]");
+    $("#tree").tree({
+        data: data,
+        autoOpen: true,
+        dragAndDrop: false,
+        openedIcon: ""
+    });
 }
