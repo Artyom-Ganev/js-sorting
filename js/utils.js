@@ -155,6 +155,9 @@ function Node(val, id) {
  * Create new binary tree
  */
 function BinaryTree() {
+    if (!(this instanceof BinaryTree)) {
+        return new BinaryTree();
+    }
     this.root = null;
 }
 
